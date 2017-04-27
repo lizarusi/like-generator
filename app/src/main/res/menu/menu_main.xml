@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hanneswidrig.testprogram.MainActivity">
+    <!--Reset Button-->
+    <item
+        android:id="@+id/reset"
+        android:icon="@drawable/ic_rotate_left_white_48px"
+        android:title="@string/reset_progress_bar"
+        app:showAsAction="ifRoom" />
+    <item android:title="@string/lovetotal"
+        android:id="@+id/lovetotal"
+        android:orderInCategory="99"
+        android:visible="false" />
+    <item
+        android:title="@string/title_activity_second"
+        android:orderInCategory="100"
+        android:id="@+id/second_act" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="101"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>
