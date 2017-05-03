@@ -38,10 +38,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img;
     private int[] imagesRes;
     private int selectedImg;
+    private int levels;
 
     public void backgroundColor() {
         SharedPreferences preferences = getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
         final boolean bool = preferences.getBoolean(getString(R.string.switch_key), false);
+        final int level = preferences.getInt(getString(R.string.level),levels);
+
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.content_main);
         if(bool) {
             relativeLayout.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),
@@ -199,6 +202,15 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         backgroundColor();
 //        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_LONG).show();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences settings = getSharedPreferences("MyPrefsFile", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        levels = mProgressStatus;
+        editor.putInt(getString(R.string.level), levels);
+        editor.apply();
     }
 
     @Override

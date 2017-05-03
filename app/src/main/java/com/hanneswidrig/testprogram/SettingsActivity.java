@@ -64,11 +64,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     protected void onStop() {
         super.onStop();
-
-//        Toast.makeText(getApplicationContext(),"onStop",Toast.LENGTH_LONG).show();
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-//        editor.putInt("Background", colorVar);
         editor.putBoolean(getString(R.string.switch_key), switchVar);
         editor.apply();
     }
