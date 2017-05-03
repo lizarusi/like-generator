@@ -15,6 +15,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Queue;
-import java.util.Stack;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private int mProgressStatus;
@@ -101,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //CUSTOM CODE TO FIX IMAGES
-
     private void setScaledImage(ImageView imageView, final int resId) {
         final ImageView iv = imageView;
         ViewTreeObserver viewTreeObserver = iv.getViewTreeObserver();
@@ -159,11 +157,17 @@ public class MainActivity extends AppCompatActivity {
         return inSampleSize;
     }
 
-    //IMAGE FIX ^
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
+        final int level = preferences.getInt(getString(R.string.level), levels);
+        final int pickey = preferences.getInt(getString(R.string.pictureskey), selectedImg);
+        mProgressStatus = level;
+        selectedImg = pickey;
+
         setContentView(R.layout.activity_main);
         img = (ImageView) findViewById(R.id.ImageView2);
         backgroundColor();
@@ -172,10 +176,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
-        mProgress.setProgress(0);
+        mProgress.setProgress(mProgressStatus);
         mProgress.setMax(100);
+
         textView  = (TextView) findViewById(R.id.textView);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        textView.setText(String.format(Locale.ENGLISH,Integer.toString(mProgressStatus)));
+        switchImg(selectedImg-1,img);
+        img.setVisibility(View.VISIBLE);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -188,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                 mProgress.setProgress(mProgressStatus);
                 mProgress.incrementProgressBy(1);
                 textView.setText(progressText);
-                img.setVisibility(View.VISIBLE);
                 selectedImg++;
                 if(mProgressStatus == 100) {
                     Toast.makeText(getApplicationContext(),
@@ -201,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         backgroundColor();
-//        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_LONG).show();
     }
 
     protected void onPause() {
@@ -210,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         levels = mProgressStatus;
         editor.putInt(getString(R.string.level), levels);
+        editor.putInt(getString(R.string.pictureskey), selectedImg);
         editor.apply();
     }
 
@@ -247,5 +255,10 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
+//        Toast.makeText(getApplicationContext(),"Activity Destroyed",Toast.LENGTH_LONG).show();
     }
 }

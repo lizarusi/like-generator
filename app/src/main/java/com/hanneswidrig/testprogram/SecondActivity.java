@@ -56,6 +56,7 @@ public class SecondActivity extends AppCompatActivity {
             levelthree.setVisibility(View.VISIBLE);
         }
     }
+
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
@@ -72,5 +73,10 @@ public class SecondActivity extends AppCompatActivity {
             leveltwo.setVisibility(View.VISIBLE);
             levelthree.setVisibility(View.VISIBLE);
         }
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
+//        Toast.makeText(getApplicationContext(),"Activity Destroyed",Toast.LENGTH_LONG).show();
     }
 }

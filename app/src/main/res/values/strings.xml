@@ -77,7 +77,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="app_descrip">Love Generator For Tamarind</string>
+    <string name="app_descrip">Love Generator For Tammi Tess</string>
     <string name="reset_progress_bar">Reset Progress Bar</string>
     <string name="title_activity_second">Love Trophies</string>
     <string name="main">Main</string>
@@ -98,4 +98,5 @@
     <string name="level_2">Level 2</string>
     <string name="level_3">Level 3</string>
     <string name="level">level</string>
+    <string name="pictureskey">Picture Key</string>
 </resources>
