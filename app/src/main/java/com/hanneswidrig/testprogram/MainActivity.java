@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private int[] imagesRes;
     private int selectedImg;
     private int levels;
+    private int text;
 
     public void backgroundColor() {
         SharedPreferences preferences = getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
