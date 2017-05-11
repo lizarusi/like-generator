@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private int[] imagesRes;
     private int selectedImg;
     private int levels;
-    private int text;
 
     public void backgroundColor() {
         SharedPreferences preferences = getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
@@ -182,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView  = (TextView) findViewById(R.id.textView);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        textView.setText(String.format(Locale.ENGLISH,Integer.toString(mProgressStatus)));
+        textView.setText(String.format(Locale.ENGLISH,"%S",Integer.toString(mProgressStatus)));
         switchImg(selectedImg-1,img);
         img.setVisibility(View.VISIBLE);
 
