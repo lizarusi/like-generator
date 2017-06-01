@@ -1,4 +1,4 @@
-# Love generator ++
+# Love generator +++
 
 ### Идея проекта
 
